@@ -12,7 +12,7 @@ const server = createServer(app);
 
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:3000', 
+  origin: 'https://movie-frontend-dgdu.onrender.com', 
   credentials: true,          
 }));
 
