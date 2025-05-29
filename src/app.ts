@@ -12,7 +12,7 @@ const server = createServer(app);
 
 app.use(express.json());
 app.use(cors({
-  origin: 'https://movie-frontend-dgdu.onrender.com', 
+  origin: 'https://movie-frontend-git-main-ankitas-projects-f5c00b6c.vercel.app', 
   credentials: true,          
 }));
 
