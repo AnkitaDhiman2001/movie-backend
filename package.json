@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
  "scripts": {
-  "dev": "npx sequelize db:migrate && nodemon src/app.ts",
-  "build": "rimraf dist && tsc",
-  "start": "node dist/app.js",
-  "vercel-build": "npm run build && npm run migrate",
-  "migrate": "npx sequelize db:migrate"
-},
+    "dev": "npx sequelize db:migrate && nodemon src/app.ts",
+    "build": "rimraf dist && tsc",
+    "start": "node dist/app.js",
+    "vercel-build": "npm run build && npm run migrate",
+    "migrate": "npx sequelize db:migrate"
+ },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -21,6 +21,7 @@
     "express": "^4.17.3",
     "nodemailer": "^7.0.3",
     "pg": "^8.16.0",
+    "rimraf": "^6.0.1",
     "sequelize": "^6.37.7"
   },
   "devDependencies": {
