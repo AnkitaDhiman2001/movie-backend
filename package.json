@@ -7,7 +7,7 @@
   "dev": "npx sequelize db:migrate && nodemon src/app.ts",
   "build": "rimraf dist && tsc",
   "start": "node dist/app.js",
-  "vercel-build": "npm install && npm run build && npm run migrate",
+  "vercel": "npm install && npm run build && npm run migrate",
   "migrate": "npx sequelize-cli db:migrate"
 },
   "keywords": [],
