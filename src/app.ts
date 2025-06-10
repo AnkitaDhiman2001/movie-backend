@@ -12,7 +12,7 @@ const server = createServer(app);
 
 app.use(express.json());
 app.use(cors({
-  origin: 'https://movie-frontend-git-main-ankitas-projects-f5c00b6c.vercel.app', 
+  origin: ['https://movie-frontend-git-main-ankitas-projects-f5c00b6c.vercel.app', 'http://localhost:3000', 'https://movie-frontend-tau-five.vercel.app'],
   credentials: true,          
 }));
 
