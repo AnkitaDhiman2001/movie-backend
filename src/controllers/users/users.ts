@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Users from "../../models/users";
 import bcrypt from "bcrypt";
 import { sendResetPasswordEmail } from "../../helpers/emailSender";
+import Watchlists from "../../models/watchList";
 
 export const createUsers = async (req: Request, res: Response) => {
     try {
@@ -69,3 +70,51 @@ export const resetPassword = async (req: Request, res: Response) => {
         res.status(500).json({ message: "Error in reset password", error: err });
     }
 };
+
+
+export const addWatchlist = async (req: Request, res: Response) => {
+    try {
+        const data = req.body;
+        const addedType = await Watchlists.create({
+            userId: data.userId,
+            mediaId: data.movieId,
+            mediaType: data.mediaType,
+            mediaTitle: data.mediaTitle,
+            mediaPoster: data.mediaPoster
+        });
+        if (!addedType) {
+            return res.status(400).json({ message: "Failed to add to watchlist" });
+        }
+        res.status(201).json({ message: "Added to watchlist", data: addedType });
+    }
+    catch (err){
+        res.status(500).json({ message: "Error adding to watchlist", error: err });
+    }
+}
+
+export const getWatchlist = async (req: Request, res: Response) => {
+    try {
+        const userId = req.body.userId;
+        const watchlist = await Watchlists.findAll({ where: { userId } });
+        if (!watchlist) {
+            return res.status(404).json({ message: "Watchlist not found" });
+        }
+        res.status(200).json(watchlist);
+    } catch (err) {
+        res.status(500).json({ message: "Error fetching watchlist", error: err });
+    }
+};
+
+export const deleteWatchlist = async (req: Request, res: Response) => {
+    try {
+        const { userId, mediaId } = req.body;
+        const deletedItem = await Watchlists.destroy({ where: { userId, mediaId } });
+        if (!deletedItem) {
+            return res.status(404).json({ message: "Watchlist item not found" });
+        }
+        res.status(200).json({ message: "Watchlist item deleted successfully" });
+    } catch (err) {
+        res.status(500).json({ message: "Error deleting watchlist item", error: err });
+    }
+};
+
