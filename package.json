@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
- "scripts": {
-  "dev": "npx sequelize db:migrate && nodemon src/app.ts",
-  "build": "rimraf dist && tsc",
-  "start": "node dist/app.js",
-  "vercel": "npm install && npm run build && npm run migrate",
-  "migrate": "npx sequelize-cli db:migrate"
-},
+  "scripts": {
+    "watch": "tsc --watch",
+    "dev": "npx sequelize db:migrate && nodemon  src/app.ts ",
+    "start": "nodemon dist/app.js",
+    "build": "rm -Rf dist/ && tsc",
+    "serve": "rimraf dist && tsc && node ./dist/app.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -21,7 +21,6 @@
     "express": "^4.17.3",
     "nodemailer": "^7.0.3",
     "pg": "^8.16.0",
-    "rimraf": "^6.0.1",
     "sequelize": "^6.37.7"
   },
   "devDependencies": {
